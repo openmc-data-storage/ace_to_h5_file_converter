@@ -10,9 +10,11 @@ async def _upload_file_and_show(e):
     files = e.target.files.to_py()
     for file in files:
       file_content = await file.text()
+      data = IncidentNeutron.from_ace(file_content)
+
 
     newDiv = document.createElement('div')
-    newContent = document.createTextNode(f'success {file_content}');
+    newContent = document.createTextNode(f'success {data}');
     newDiv.appendChild(newContent);
 
     document.getElementById("status_report").appendChild(newDiv)
