@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sine Wave Interference</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <py-env>
+      - numpy
+      - lxml
+      - pandas
+      - paths:
+        - src/upload.py
+        - src/neutron.py
+        - src/ace.py
+        - src/mixin.py
+        - src/checkvalue.py
+        - src/data.py
+        - src/endf.py
+        - src/function.py
+        - src/fission_energy.py
+        - src/grid.py
+        - src/njoy.py
+        - src/product.py
+        - src/reaction.py
+        - src/resonance.py
+        - src/resonance_covariance.py
+        - src/urr.py
+        - src/angle_energy.py
+        - src/univariate.py
+        - src/_xml.py
+        - src/angle_distribution.py
+        - src/correlated.py
+        - src/energy_distribution.py
+        - src/kalbach_mann.py
+        - src/laboratory.py
+        - src/nbody.py
+        - src/uncorrelated.py
+    </py-env>
+</head>
+<body>
+<label for="Upload an ACE file"></label><input type="file" id="file-upload">
+<div id="status_report"></div>
+<py-script src="./src/upload.py"></py-script>
+</body>
+</html>
