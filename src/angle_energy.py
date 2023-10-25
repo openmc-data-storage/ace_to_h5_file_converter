@@ -27,25 +27,25 @@ class AngleEnergy(EqualityMixin, ABC):
         """
         dist_type = group.attrs['type'].decode()
         if dist_type == 'uncorrelated':
-            return openmc.data.UncorrelatedAngleEnergy.from_hdf5(group)
+            return data.UncorrelatedAngleEnergy.from_hdf5(group)
         elif dist_type == 'correlated':
-            return openmc.data.CorrelatedAngleEnergy.from_hdf5(group)
+            return data.CorrelatedAngleEnergy.from_hdf5(group)
         elif dist_type == 'kalbach-mann':
-            return openmc.data.KalbachMann.from_hdf5(group)
+            return data.KalbachMann.from_hdf5(group)
         elif dist_type == 'nbody':
-            return openmc.data.NBodyPhaseSpace.from_hdf5(group)
+            return data.NBodyPhaseSpace.from_hdf5(group)
         elif dist_type == 'coherent_elastic':
-            return openmc.data.CoherentElasticAE.from_hdf5(group)
+            return data.CoherentElasticAE.from_hdf5(group)
         elif dist_type == 'incoherent_elastic':
-            return openmc.data.IncoherentElasticAE.from_hdf5(group)
+            return data.IncoherentElasticAE.from_hdf5(group)
         elif dist_type == 'incoherent_elastic_discrete':
-            return openmc.data.IncoherentElasticAEDiscrete.from_hdf5(group)
+            return data.IncoherentElasticAEDiscrete.from_hdf5(group)
         elif dist_type == 'incoherent_inelastic_discrete':
-            return openmc.data.IncoherentInelasticAEDiscrete.from_hdf5(group)
+            return data.IncoherentInelasticAEDiscrete.from_hdf5(group)
         elif dist_type == 'incoherent_inelastic':
-            return openmc.data.IncoherentInelasticAE.from_hdf5(group)
+            return data.IncoherentInelasticAE.from_hdf5(group)
         elif dist_type == 'mixed_elastic':
-            return openmc.data.MixedElasticAE.from_hdf5(group)
+            return data.MixedElasticAE.from_hdf5(group)
 
     @staticmethod
     def from_ace(ace, location_dist, location_start, rx=None):
@@ -81,35 +81,35 @@ class AngleEnergy(EqualityMixin, ABC):
 
         # Parse energy distribution data
         if law == 2:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.DiscretePhoton.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.DiscretePhoton.from_ace(ace, idx)
         elif law in (3, 33):
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.LevelInelastic.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.LevelInelastic.from_ace(ace, idx)
         elif law == 4:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.ContinuousTabular.from_ace(
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.ContinuousTabular.from_ace(
                 ace, idx, location_dist)
         elif law == 5:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.GeneralEvaporation.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.GeneralEvaporation.from_ace(ace, idx)
         elif law == 7:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.MaxwellEnergy.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.MaxwellEnergy.from_ace(ace, idx)
         elif law == 9:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.Evaporation.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.Evaporation.from_ace(ace, idx)
         elif law == 11:
-            distribution = openmc.data.UncorrelatedAngleEnergy()
-            distribution.energy = openmc.data.WattEnergy.from_ace(ace, idx)
+            distribution = data.UncorrelatedAngleEnergy()
+            distribution.energy = data.WattEnergy.from_ace(ace, idx)
         elif law == 44:
-            distribution = openmc.data.KalbachMann.from_ace(
+            distribution = data.KalbachMann.from_ace(
                 ace, idx, location_dist)
         elif law == 61:
-            distribution = openmc.data.CorrelatedAngleEnergy.from_ace(
+            distribution = data.CorrelatedAngleEnergy.from_ace(
                 ace, idx, location_dist)
         elif law == 66:
-            distribution = openmc.data.NBodyPhaseSpace.from_ace(
+            distribution = data.NBodyPhaseSpace.from_ace(
                 ace, idx, rx.q_value)
         else:
             raise ValueError("Unsupported ACE secondary energy "
