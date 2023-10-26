@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sine Wave Interference</title>
+    <title>ACE to OpenMC checker</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,36 +12,24 @@
       - lxml
       - pandas
       - paths:
-        - src/upload.py
-        - src/neutron.py
         - src/ace.py
-        - src/mixin.py
-        - src/checkvalue.py
-        - src/data.py
-        - src/endf.py
-        - src/function.py
-        - src/fission_energy.py
-        - src/grid.py
-        - src/njoy.py
-        - src/product.py
-        - src/reaction.py
-        - src/resonance.py
-        - src/resonance_covariance.py
-        - src/urr.py
-        - src/angle_energy.py
-        - src/univariate.py
-        - src/_xml.py
-        - src/angle_distribution.py
-        - src/correlated.py
-        - src/energy_distribution.py
-        - src/kalbach_mann.py
-        - src/laboratory.py
-        - src/nbody.py
-        - src/uncorrelated.py
     </py-env>
 </head>
 <body>
-<label for="Upload an ACE file"></label><input type="file" id="upload">
+<p style="text-align:center;font-size:200%">
+    ACE file to OpenMC checker
+</p>
+<p style="text-align:center">
+    This webpage runs 
+<a href="https://docs.openmc.org/en/v0.13.3/pythonapi/generated/openmc.data.IncidentNeutron.html#openmc.data.IncidentNeutron.from_ace">openmc.IncidentNeutron.from_ace()</a>
+ on the selected ace file.
+</p>
+<p style="text-align:center">
+    WASM Python is used to run OpenMC nuclear data processing natively from the browser, <a href="https://github.com/openmc-data-storage/ace_to_h5_file_converters">source code here.</a>
+</p>
+<p style="text-align:center">
+    <label for="Upload an ACE file"></label><input type="file" id="upload">
+</p>
 <div id="status_report"></div>
 <py-script src="./src/upload.py"></py-script>
 </body>
